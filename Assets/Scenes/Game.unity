@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -810,7 +810,7 @@ GameObject:
   - component: {fileID: 1470259389}
   - component: {fileID: 1470259388}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -828,7 +828,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9459124865ab60d458a73128125dd418, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameConfig: {fileID: 11400000, guid: 1585e5945400bf34598ccc9beab3f8f3, type: 2}
+  gameConfig: {fileID: 11400000, guid: 3bf37b97abf91844e838c3fd9c07b1cf, type: 2}
   backButton: {fileID: 1062798415}
   changeButton: {fileID: 1747092621}
   image: {fileID: 1867455374}

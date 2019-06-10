@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using Application;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -19,9 +20,41 @@ namespace Game
         private void Awake()
         {
             ApplicationManager.Instance.GameManager = this;
-            backButton.onClick.AddListener(OnBack);
+            SceneManager.LoadScene(ApplicationManager.Instance.SelectedGameScene.ToString(), LoadSceneMode.Additive);
+            backButton.onClick.AddListener(OnBackButtonClicked);
             changeButton.onClick.AddListener(OnChange);
             ColorChange += OnColorChange;
+        }
+
+        private void StartGame()
+        {
+            StartSpawningWalls(currentGameScene);
+            StartCoroutine(SpawnCoroutine());
+        }
+
+        private IEnumerator SpawnCoroutine()
+        {
+            var timeElapsed = 0f;
+            while (true)
+            {
+                if (timeElapsed > spawnRate)
+                {
+                    timeElapsed = 0f;
+                    var newWall = Instantiate(wallPrefab);
+                    newWall.Init();
+                    newWall.WallPassed += OnWallPassed;
+                }
+
+                timeElapsed += Time.deltaTime;
+                
+                yield return null;
+            }
+        }
+
+        private void OnWallPassed(Wall thisWall)
+        {
+            thisWall.WallPassed -= OnWallPassed;
+            
         }
 
         private void OnChange() => ColorChange?.Invoke();
@@ -35,7 +68,7 @@ namespace Game
             return gameConfig.Colors[randomIndex];
         }
 
-        private void OnBack() => SceneManager.LoadScene("Menu");
+        private void OnBackButtonClicked() => SceneManager.LoadScene("Menu");
 
         private void OnDestroy()
         {
