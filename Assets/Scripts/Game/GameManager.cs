@@ -1,47 +1,59 @@
 ﻿using System;
 using Application;
+using GameScene;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using Random = UnityEngine.Random;
 
 namespace Game
 {
     public class GameManager : MonoBehaviour
     {
-        public event Action ColorChange;
+        public event Action StopScrolling;
         
         [SerializeField] private GameConfig gameConfig;
+        [SerializeField] private GameSceneManager gameSceneManager;
         [SerializeField] private Button backButton;
-        [SerializeField] private Button changeButton;
-        [SerializeField] private Image image;
+        [SerializeField] private TextMeshProUGUI gameOverText;
+        [SerializeField] private TextMeshProUGUI scoreText;
+
+        private int score = 0;
 
         private void Awake()
         {
             ApplicationManager.Instance.GameManager = this;
-            backButton.onClick.AddListener(OnBack);
-            changeButton.onClick.AddListener(OnChange);
-            ColorChange += OnColorChange;
+            backButton.onClick.AddListener(OnBackButtonClicked);
+            Debug.Log(ApplicationManager.Instance.SelectedGameScene.ToString());
+            SceneManager.LoadScene(ApplicationManager.Instance.SelectedGameScene.ToString(), LoadSceneMode.Additive);
         }
 
-        private void OnChange() => ColorChange?.Invoke();
-
-        private void OnColorChange() => image.color = GetRandomColor();
-
-        public Color GetRandomColor()
+        public void RegisterGameSceneManager(GameSceneManager gameSceneManager)
         {
-            int maxIndex = gameConfig.Colors.Count;
-            int randomIndex = Random.Range(0, maxIndex);
-            return gameConfig.Colors[randomIndex];
+            this.gameSceneManager = gameSceneManager;
+            //StartGame();
         }
 
-        private void OnBack() => SceneManager.LoadScene("Menu");
-
-        private void OnDestroy()
+        public void UNregisterGameSceneManager()
         {
-            ColorChange -= OnColorChange;
-            ApplicationManager.Instance.GameManager = null;
+            gameSceneManager = null;
         }
+
+        public void AddScore()
+        {
+            score++;
+            scoreText.text = "Score: " + score.ToString();
+        }
+        
+        public void GameOver()
+        {
+            gameOverText.gameObject.SetActive(true);
+            StopScrolling?.Invoke();
+        }
+
+        private void OnBackButtonClicked() => SceneManager.LoadScene(ApplicationScenes.MainMenu.ToString());
+
+        private void OnDestroy() => ApplicationManager.Instance.GameManager = null;
     }
 }
 
