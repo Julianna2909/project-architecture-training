@@ -214,6 +214,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a6d1aab758f890418593976d7ba6a56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wallPrefab: {fileID: 7176584899420624241, guid: d8d6dccc96b035f48b18d8ad445f642e,
+    type: 3}
   player: {fileID: 2038097914}
 --- !u!4 &849065625
 Transform:
@@ -238,6 +240,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 949495254}
+  - component: {fileID: 949495255}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -259,6 +262,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &949495255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949495253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 168bb346f0c71e54f9d8d1f94b637227, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wallPoolSize: 5
+  spawnRate: 4
+  wallMin: -2
+  wallMax: 2
+  continueSpawning: 0
 --- !u!1 &1228307353
 GameObject:
   m_ObjectHideFlags: 0
@@ -587,7 +607,7 @@ GameObject:
   - component: {fileID: 2038097910}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -646,7 +666,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 0.97510695, b: 0.3254717, a: 1}
+  m_Color: {r: 0.32549024, g: 1, b: 0.41833636, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

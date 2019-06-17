@@ -1,7 +1,7 @@
-﻿using Application;
+﻿using InternalAssets.Scripts.Application;
 using UnityEngine;
 
-namespace Game
+namespace InternalAssets.Scripts.Game
 {
     public class ScrollingObject : MonoBehaviour
     {
@@ -13,15 +13,15 @@ namespace Game
             rigidbody = GetComponent<Rigidbody2D>();
             rigidbody.velocity = new Vector2 (scrollSpeed, 0);
 
-            ApplicationManager.Instance.GameManager.StopScrolling += OnStopScrolling;
+            ApplicationManager.Instance.GameManager.GameStop += OnGameStopScrolling;
         }
 
-        private void OnStopScrolling()
+        private void OnGameStopScrolling()
         {
-            ApplicationManager.Instance.GameManager.StopScrolling -= OnStopScrolling;
+            ApplicationManager.Instance.GameManager.GameStop -= OnGameStopScrolling;
             rigidbody.velocity = Vector2.zero;
+            
         }
-
     }
 }
 

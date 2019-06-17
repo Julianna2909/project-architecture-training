@@ -1,7 +1,7 @@
-﻿using Application;
+﻿using InternalAssets.Scripts.Application;
 using UnityEngine;
 
-namespace GameScene
+namespace InternalAssets.Scripts.GameScene
 {
     public class Player : MonoBehaviour
     {

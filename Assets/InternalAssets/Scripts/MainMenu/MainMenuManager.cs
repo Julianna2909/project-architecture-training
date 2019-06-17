@@ -1,9 +1,9 @@
-﻿using Application;
+﻿using InternalAssets.Scripts.Application;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace MainMenu
+namespace InternalAssets.Scripts.MainMenu
 {
     public class MainMenuManager : MonoBehaviour
     {

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Game
+namespace InternalAssets.Scripts.Game
 {
     public class RepeatingGround : MonoBehaviour
     {

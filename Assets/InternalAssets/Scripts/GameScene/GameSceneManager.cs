@@ -1,9 +1,9 @@
-﻿using Application;
-using Game;
+﻿using InternalAssets.Scripts.Application;
+using InternalAssets.Scripts.Game;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace GameScene
+namespace InternalAssets.Scripts.GameScene
 {
     public class GameSceneManager : MonoBehaviour
     {
@@ -20,5 +20,10 @@ namespace GameScene
             SceneManager.SetActiveScene(gameObject.scene);
             Debug.Log(SceneManager.GetActiveScene().name);
         }
-    }
+
+ //       private void OnDestroy()
+ //       {
+ //           ApplicationManager.Instance.GameManager.UNregisterGameSceneManager();
+ //       }
+  }
 }
